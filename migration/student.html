@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>High Skilled Visa Flow</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+  <!-- Custom styles for this template -->
+  <link href="css/scrolling-nav.css" rel="stylesheet">
+  <link href="css/custom.css" rel="stylesheet">
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+  <script src="http://d3js.org/d3.v5.min.js" charset="utf-8"></script>
+  <script src="http://d3js.org/topojson.v3.min.js"></script>
+
+</head>
+
+<body id="page-top" bgcolor="#E6E6FA">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">High Skilled Visa Flow</a>
+    <div class="navbar-brand"> > </div>
+    <a class="navbar-brand js-scroll-trigger" href="#metro-map">Foreign Study</a>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a href="student.html">Foreign Study in the U.S. by Country</a>
+        </li>
+        <div>&nbsp;&nbsp;|&nbsp;&nbsp;</div>
+        <li class="nav-item">
+          <a href="policy_maker.html">OPT & H-1B Data by MSA</a>
+        </li>
+        <div>&nbsp;&nbsp;|&nbsp;&nbsp;</div>
+        <li class="nav-item">
+          <a href="about.html">About</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!--   <header class="bg-primary text-white">
+    <div class="container text-center">
+      <h1>Welcome to Scrolling Nav</h1>
+      <p class="lead">Click the map to select a country or shift+click to select multiple countries</p>
+    </div>
+  </header>
+-->
+<div class="container">
+
+  <!-- World Map Selection -->
+  <section id="worldMap" class="child">
+    <div class="box">
+      <div class="row header">
+        <h2>World Map</h2>
+        <p class="lead">Select your country of origin</p>
+      </div>
+      <div id="world-select" class="row content d3-chart"></div>
+    </div>
+  </section>
+
+  <!-- NIV and SEVIS Data -->
+  <section id="internationalStudentData" class="child">
+    <div class="box">
+      <div class="row header">
+        <h2 id="type-text">Breakdown by Visa Type and Degree Type</h2>
+        <p class="lead" style="text-align: left; font-size: 0.9em;">
+          This is how the foreign student population from your country in the United States has changed over the past few years. Different visa types correspond to different fields of study (J-1: exchange students, M-1: vocational study, F-1: other kinds of study). You can also compare how many come to study in the U.S. with how many obtain H-1B visas.
+        </p>
+      </div>
+      <div id="niv-chart" class="row content d3-chart"></div>
+      <div id="sevis-chart" class="row content d3-chart"></div>
+      <div class="row header" padding="1rem">
+<!--       <button class="btn btn-primary" data-toggle="collapse" href="#work" type="button" aria-expanded="false" aria-controls="collapseExample">
+        After I study, where will I work?
+      </a> -->
+      </div>
+      <a id="button-scroller" class="ct-btn-scroll ct-js-btn-scroll" href="#us-state-distribution"><img alt="Arrow Down Icon" src="https://www.solodev.com/assets/anchor/arrow-down.png"></a>
+    </div>
+  </section>
+
+  <!-- Where Students Live -->
+  <section id="us-state-distribution" class="child">
+    <div class="box">
+      <div class="row header">
+        <h2 id="where-text">Where Do Foreign Students Live in the U.S.?</h2>
+        <p class="lead" style="font-size: 0.9em;">
+          This map shows where students from your country have chosen to study in the U.S. as of 2018.
+        </p>
+      </div>
+      <div id="origin-select" class="row content d3-chart"></div>
+      <div class="row header" padding="1rem">
+      <a class="btn btn-primary" href="policy_maker.html">
+        Learn more about where foreign students work in the U.S. post-graduation
+      </a>
+<!--       <button class="btn btn-primary" data-toggle="collapse" href="#work" type="button" aria-expanded="false" aria-controls="collapseExample">
+        After I study, where will I work?
+      </a> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- OPT/H1-B Section -->
+
+<!--   <div id="work" class="collapse">
+  <section id="OPT/H1-B" class="child">
+    <div class="box mx-auto">
+      <div class="row header">
+        <h2>OPT and H1-B Visa Holders Across the US</h2>
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
+      </div>
+      <div id="opt-map" class="row content d3-chart"></div>
+    </div>
+  </section>
+ -->
+<!--   <section id="H1-B" class="child">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>H1-B </h2>
+          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
+        </div>
+      </div>
+    </div>
+  </section> -->
+  </div>
+</div>
+
+
+
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+  <div class="container">
+    <p class="m-0 text-center text-white">MIT Big Data, Visualization, and Society - Spring 2019</p>
+    <p class="m-0 text-center text-white">Nate Bailey, Apaar Bansal, Jacob Kohn, Jackie Lin</p>
+  </div>
+
+
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom JavaScript for this theme -->
+<script src="js/scrolling-nav.js"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+<!-- Visualization JavaScript -->
+<!-- <script src="viz_js/draw_opt_plots.js"></script> -->
+<script src="viz_js/new_immigration_plots.js"></script>
+<script type="text/javascript">
+<!--
+    d3.select("#button-scroller").on("click", function() {
+      var event = d3.event;
+      event.preventDefault();
+      setTimeout(function() {
+        document.getElementById("us-state-distribution").scrollIntoView({behavior: "smooth"})
+      }, 500);
+    });
+
+
+    function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+    }
+//-->
+</script>
+
+</body>
+
+</html>

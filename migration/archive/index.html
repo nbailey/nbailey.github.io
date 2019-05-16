@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Big Data & Visualization - High Skilled Immigration to the US</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  
+
+  <!-- Custom styles for this template -->
+  <link href="css/scrolling-nav.css" rel="stylesheet">
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+  <script src="http://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+
+
+</head>
+
+<body id="page-top" bgcolor="#E6E6FA">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <style>
+      .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
+      .toggle.ios .toggle-handle { border-radius: 20px; }
+    </style>
+    <input type="checkbox" checked data-toggle="toggle" data-style="ios" data-on="Our Story" data-off="Your Story" data-onstyle="warning" data-offstyle="info">  
+
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+      <label class="btn btn-primary active">
+        <input type="radio" name="options" id="option1" autocomplete="off" checked> Our Story
+      </label>
+      <label class="btn btn-warning">
+        <input type="radio" name="options" id="option2" autocomplete="off"> Your Story
+      </label>
+    </div>`
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#worldMap">World Map</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#internationalStudentData">International Student Data</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#usDistribution">US Distribution</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#OPT">OPT</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#H1-B">H1-B</a>
+        </li>        </ul>
+      </div>
+    </div>
+  </nav>
+
+<!--   <header class="bg-primary text-white">
+    <div class="container text-center">
+      <h1>Welcome to Scrolling Nav</h1>
+      <p class="lead">Click the map to select a country or shift+click to select multiple countries</p>
+    </div>
+  </header>
+-->
+
+<div class="container">
+  <section id="worldMap" class="child">
+    <script type="text/javascript" src="viz_js/test.js">
+    </script>
+    <div class="container">
+      <div class="row"> 
+        <div class="col-lg-8 mx-auto mt-0">
+          <h2>World Map</h2>
+          <p class="lead">This page contains a selectable world map.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-lg-12" id="chartArea">
+        <script>
+            // Our D3 code will go here.
+              // var bosData = d3.csv("https://gist.githubusercontent.com/jdev42092/46071bf3284265c37ea07d6328ef7a3a/raw/cc7bfc53f3853437749906ccf7d2cac49c43c9a2/neigh_311.csv", ({neighborhood, num_311}) => ({neighborhood: neighborhood, calls: +num_311}))
+
+              var bosData = d3.csv("https://gist.githubusercontent.com/jdev42092/46071bf3284265c37ea07d6328ef7a3a/raw/cc7bfc53f3853437749906ccf7d2cac49c43c9a2/neigh_311.csv", function(d) {
+                return {neighborhood: d.neighborhood, calls: d.num_311}
+              }, function(error, bosData) {
+                  // Initialize SVG object (using our pre-defined width and height)
+                  // var height = document.getElementById("chartArea").clientHeight
+                  // var width = 
+
+                  var margin = ({top: 15, right: 10, bottom: 25, left: 30})
+                  var svg = d3.select("#chartArea").append("svg").attr("id", "test").attr("height", window.innerHeight);
+                  var height = window.innerHeight;
+                  var width = height*500/600;
+                  svg.attr("width", width);
+
+                  // Get length of dataset
+                  var arrayLength = bosData.length; // length of dataset
+                  var maxValue = d3.max(bosData, d=> d.calls); // get max value of our dataset
+                  var x_axisLength = (width - margin.right - margin.left); // length of x-axis in our layout
+                  var y_axisLength = (height - margin.top - margin.bottom); // length of y-axis in our layout
+
+                  
+                  // Use a scale for the height of the visualization
+                  var yScale = d3.scaleLinear()
+                  .domain([0, d3.max(bosData, d=> d.calls)])
+                  .range([margin.bottom, height - margin.top]) 
+
+                  // Call tooltip
+                  tooltip = d3.select("body")
+                  .append("div")
+                  .style("position", "absolute")
+                  .style("font-family", "'Open Sans', sans-serif")
+                  .style("font-size", "12px")
+                  .style("z-index", "10")
+                  .style("visibility", "hidden"); 
+                  
+                  // Select and generate rectangle elements
+                  svg.selectAll( "rect" )
+                  .data( bosData )
+                  .enter()
+                  .append("rect")
+                  .attr( "x", (d,i) => (i*(x_axisLength/arrayLength) + margin.left)) 
+                          // Set x coordinate of each bar to index of data value (i) times dynamically calculated bar width.
+                          // Add left margin to account for our left margin.
+                          .attr( "y", d => (height - yScale(d.calls)) )  
+                          // Set y coordinate using yScale. 
+                          .attr( "width", (x_axisLength/arrayLength) - 1 )    
+                          // Set bar width using length of array, with 1px gap between each bar.
+                          .attr( "height", d => yScale(d.calls) - yScale(0))                         
+                          // Set height of rectangle to data value, accounting for bottom margin.
+                          .attr( "fill", "steelblue")
+                          .on("mouseover", d => tooltip.style("visibility", "visible").text(d.neighborhood + ": " + d.calls))
+                          .on("mousemove", d => tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px").text(d.neighborhood + ": " + d.calls))
+                          .on("mouseout", d => tooltip.style("visibility", "hidden"));
+
+                  // Create y-axis, beginning at the top margin and ending at the bottom margin
+                  svg.append("line")
+                  .attr("x1", margin.left)
+                  .attr("y1", margin.top)
+                  .attr("x2", margin.left)
+                  .attr("y2", height - margin.bottom)
+                  .attr("stroke-width", 2)
+                  .attr("stroke", "black");
+
+                  // Create x-axis beginning at the left margin, and ending at the right margin
+                  svg.append("line")
+                  .attr("x1", margin.left)
+                  .attr("y1", height - margin.bottom)
+                  .attr("x2", width - margin.right)
+                  .attr("y2", height - margin.bottom)
+                  .attr("stroke-width", 2)
+                  .attr("stroke", "black");
+                  
+                  // Add a Label
+                  // y-axis label
+                  svg.append("text")
+                  .attr("class", "y label")
+                  .attr("text-anchor", "end")
+                  .text("No. of 311 Calls")
+                  .attr("transform", "translate(20, 20) rotate(-90)");
+                });
+
+
+
+        </script>
+      </div>
+      </div>
+    </div>
+  </section>
+        <!-- -->
+
+        <div class="container">
+          <section id="internationalStudentData" class="child">
+            <div class="dropdown">
+<!--       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Explore country groupings
+      </button> -->
+      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <button class="dropdown-item" type="button">Africa</button>
+        <button class="dropdown-item" type="button">Asia</button>
+        <button class="dropdown-item" type="button">Europe</button>
+        <button class="dropdown-item" type="button">Australia</button>
+        <button class="dropdown-item" type="button">North America</button>
+        <button class="dropdown-item" type="button">South America</button>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto mt-0">
+          <h2>International Student Data</h2>
+          <p class="lead">This page contains 1. A map of the selected country (or selected countries) 2. The graphs breaking down </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-auto">
+          <img class="img-responsive" src="images/cat.jpg" alt="">
+        </div>
+        <div class="col-sm-auto">
+          <div class="row">
+            Graph 1
+          </div>
+          <div class="row">
+            Graph 2
+          </div>
+          <div class="row">
+            responsive text description
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="usDistribution" class="child">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-auto mx-auto">
+          <h2>Distribution of Selected International Students Across the US</h2>
+        </div>
+        <div class="col-lg-8 mx-auto">
+          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut optio velit inventore, expedita quo laboriosam possimus ea consequatur vitae, doloribus consequuntur ex. Nemo assumenda laborum vel, labore ut velit dignissimos.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-auto">
+          <img class="img" src="http://placehold.it/700x400">
+        </div>
+        <div class="col-sm">
+          <div> d3 graph goes here </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="OPT" class="child">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>OPT</h2>
+          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="H1-B" class="child">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>H1-B </h2>
+          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- /.c  <!-- Footer -->
+<footer class="py-5 bg-dark">
+  <div class="container">
+    <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+  </div>
+
+  container -->
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom JavaScript for this theme -->
+<script src="js/scrolling-nav.js"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+</body>
+
+</html>

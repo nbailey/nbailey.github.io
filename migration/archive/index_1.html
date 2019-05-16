@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Big Data & Visualization - High Skilled Immigration to the US</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  
+
+  <!-- Custom styles for this template -->
+  <link href="css/scrolling-nav.css" rel="stylesheet">
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+  <script src="http://d3js.org/d3.v5.min.js" charset="utf-8"></script>
+  <script src="http://d3js.org/topojson.v3.min.js"></script>
+
+</head>
+
+<body id="page-top" bgcolor="#E6E6FA">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+<!--       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <style>
+      .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
+      .toggle.ios .toggle-handle { border-radius: 20px; }
+    </style>
+    <input type="checkbox" checked data-toggle="toggle" data-style="ios" data-on="Our Story" data-off="Your Story" data-onstyle="warning" data-offstyle="info">  
+
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+      <label class="btn btn-primary active">
+        <input type="radio" name="options" id="option1" autocomplete="off" checked> Our Story
+      </label>
+      <label class="btn btn-warning">
+        <input type="radio" name="options" id="option2" autocomplete="off"> Your Story
+      </label>
+    </div>`
+ -->
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#worldMap">World Map</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#internationalStudentData">International Student Data</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#usDistribution">US Distribution</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#OPT">OPT</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#H1-B">H1-B</a>
+        </li>        </ul>
+      </div>
+    </div>
+  </nav>
+
+<!--   <header class="bg-primary text-white">
+    <div class="container text-center">
+      <h1>Welcome to Scrolling Nav</h1>
+      <p class="lead">Click the map to select a country or shift+click to select multiple countries</p>
+    </div>
+  </header>
+-->
+<div class="container">
+
+  <section id="worldMap" class="child">
+    <div class="box">
+      <div class="row header">
+        <h2>World Map</h2>
+        <p class="lead">This page contains a selectable world map.</p>
+      </div>
+      <div id="world-select" class="row content d3-chart"></div>
+    </div>
+  </section>
+
+
+  <section id="internationalStudentData" class="child">
+<!--     <div class="flex-container">
+      <div class="flex-item flex1">
+        <h2>International Student Data</h2>
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
+      </div>
+      <div id="niv-chart" class="d3-chart"></div>
+      <div id="sevis-chart" class="d3-chart"></div>
+    </div>
+  </section> -->
+    <div class="box">
+      <div class="row header">        
+        <h2>Breakdown by Visa Type and Degree Type</h2>
+        <p class="lead">This page two graphs. The top one is breakdown by visa type for the selected country. The second one is of the student visas, breakdown by degree type for the selected country.</p>
+      </div>
+      <div id="niv-chart" class="row content d3-chart"></div>
+      <div id="sevis-chart" class="row content d3-chart"></div>
+    </div>
+  </section>
+
+<!--   <section id="OPT" class="child">
+    <div class="flex-container">
+      <div class="flex-item flex1">
+        <h2>OPT</h2>
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
+      </div>
+      <div id="opt-map" class="d3-chart"></div>
+      <div class="flex-item flex2">
+      </div>
+    </div>
+  </section> -->
+
+  <section id="OPT/H1-B" class="child">
+    <div class="box mx-auto">
+      <div class="row header">
+        <h2>OPT and H1-B Visa Holders Across the US</h2>
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
+      </div>
+      <div id="opt-map" class="row content d3-chart"></div>
+    </div>
+  </section>
+
+  <section id="H1-B" class="child">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>H1-B </h2>
+          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+  <div class="container">
+    <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+  </div>
+
+
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom JavaScript for this theme -->
+<script src="js/scrolling-nav.js"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+<!-- Visualization JavaScript -->
+<script src="viz_js/draw_opt_plots.js"></script>
+<script src="viz_js/draw_immigration_plots.js"></script>
+
+</body>
+
+</html>
